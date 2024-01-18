@@ -1,6 +1,15 @@
 version: 0.2
+ 
 phases:
+  install:
+    runtime-versions:
+      aws-cli: latest
+ 
   build:
     commands:
+      - echo "AWS CLI Version"
+      - aws --version
+      - echo "Listing Files in /tmp/periodic_backup/"
+      - ls -al /tmp/periodic_backup/
       - echo "Copying files to S3"
       - aws s3 cp /tmp/periodic_backup/*.zip s3://jenkins-backup-savvas/realize.com/
