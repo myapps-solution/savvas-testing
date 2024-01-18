@@ -2,7 +2,5 @@ version: 0.2
 phases:
   build:
     commands:
-      - echo Build started 
-      - backup_folder=/tmp/periodic_backup
-      - s3_folder=s3://jenkins-backup-savvas/realize.com/
-      - aws s3 cp --debug "$backup_folder/*.zip" "$s3_folder"
+      - echo "Copying files to S3"
+      - aws s3 cp /tmp/periodic_backup/*.zip s3://jenkins-backup-savvas/realize.com/
