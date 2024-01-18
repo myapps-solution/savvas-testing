@@ -5,4 +5,4 @@ phases:
       - echo Build started 
       - backup_folder=/tmp/periodic_backup
       - s3_folder=s3://jenkins-backup-savvas/realize.com/
-      - aws s3 cp $backup_folder/*.zip $s3_folder
+      - aws s3 cp --debug $backup_folder/*.zip $s3_folder
