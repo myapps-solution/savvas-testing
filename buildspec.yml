@@ -3,5 +3,6 @@ phases:
   install:
     runtime-versions:
       java: corretto11
+      aws-cli: latest
     commands:
       - echo Getting Started
