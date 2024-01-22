@@ -18,7 +18,7 @@ phases:
     commands:
       - aws s3 cp s3://jenkins-backup16/testkey.pem /opt/testkey.pem
       - chmod 400 /opt/testkey.pem
-      - scp -o StrictHostKeyChecking=no -i /opt/testkey.pem ubuntu@http://54.226.78.10/:/opt/output.csv /tmp/output.csv
+      - scp -O StrictHostKeyChecking=no -i /opt/testkey.pem ubuntu@54.226.78.10:/opt/output.csv /tmp/output.csv
       - aws s3 cp /tmp/output.csv s3://jenkins-backup16/
       
  
