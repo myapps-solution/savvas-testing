@@ -9,20 +9,22 @@ phases:
       - pyenv global $PYTHON_311_VERSION
       - apt-get update
       - apt-get install -y awscli
+      # Fetch PEM file from SSM Parameter Store named "terraform"
+      - aws ssm get-parameter --name test --with-decryption --query "Parameter.Value" --output text > /opt/testkey.pem
+      - chmod 400 /opt/terraform.pem
  
   pre_build:
     commands:
       - echo "Executing pre_build phase..."
+      # Add any pre-build commands here
  
   build:
     commands:
-      - aws s3 cp s3://jenkins-backup16/testkey.pem /opt/testkey.pem
-      - chmod 400 /opt/testkey.pem
+      # Continue with your existing build commands
       - scp -o StrictHostKeyChecking=no -i /opt/testkey.pem ubuntu@54.226.78.10:/opt/output.csv /tmp/output.csv
-      
       - aws s3 cp /tmp/output.csv s3://jenkins-backup16/
-      
  
   post_build:
     commands:
       - echo "Executing post_build phase..."
+      # Add any post-build commands here
