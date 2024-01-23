@@ -9,8 +9,8 @@ phases:
       - pyenv global $PYTHON_311_VERSION
       - apt-get update
       - apt-get install -y awscli
-      # Fetch PEM file from SSM Parameter Store named "terraform"
-      - aws ssm get-parameter --name test --with-decryption --query "Parameter.Value" --output text > /opt/testkey.pem
+      # Fetch PEM file from SSM Parameter Store named "testkey"
+      - aws ssm get-parameter --name testkey --with-decryption --query "Parameter.Value" --output text > /opt/testkey.pem
       - chmod 400 /opt/terraform.pem
  
   pre_build:
